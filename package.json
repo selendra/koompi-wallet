@@ -1,0 +1,23 @@
+{
+  "name": "koompi-wallet",
+  "version": "1.0.0",
+  "description": "My premium Nuxt.js project",
+  "author": "Piset Heang",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/toast": "^3.3.0",
+    "@nuxtjs/vuetify": "^1.11.0",
+    "axios": "^0.19.2",
+    "cookieparser": "^0.1.0",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
