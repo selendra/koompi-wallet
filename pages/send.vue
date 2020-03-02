@@ -2,15 +2,17 @@
   <div class="container">
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-        <v-row class="ke_card">
-          <v-col>
-            <h4 class="font-weight-thin headline" style="color: #05427c">KE TOKEN</h4>
-          </v-col>
-          <v-col class="balance" v-for="item in portfolio" :key="item.id">
-            <h1>{{ item.balance ? item.balance : 0 }} KE</h1>
-            <span class="font-weight-bold title" style="color: #e0e0e0">= $1341.67</span>
-          </v-col>
-        </v-row>
+        <v-card>
+          <v-row class="ke_card">
+            <v-col cols="6">
+              <h4 class="font-weight-thin headline">Koompi TOKEN</h4>
+            </v-col>
+            <v-col cols="6" class="balance" v-for="item in portfolio" :key="item.id">
+              <h1>{{ item.balance ? item.balance : 0 }} KE</h1>
+              <span class="font-weight-bold title" style="color: #e0e0e0">= $1341.67</span>
+            </v-col>
+          </v-row>
+        </v-card>
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
         <v-card class="detail">
