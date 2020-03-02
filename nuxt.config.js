@@ -17,7 +17,6 @@ export default {
     ]
   },
   env: {
-    KEUrl: 'https://testnet-api.zeetomic.com/ke/v1',
     apiUrl: 'https://testnet-api.zeetomic.com/pub/v1'
   },
   /*
@@ -32,8 +31,10 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
+ plugins: [
+  { src: '~/plugins/vue-qr', ssr: false },
+  { src: '~/plugins/vue-qrcode-reader', ssr: false },
+],
   /*
   ** Nuxt.js dev-modules
   */

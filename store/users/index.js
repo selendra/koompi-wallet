@@ -63,7 +63,7 @@ export const actions = {
         Authorization: 'Bearer ' + token
       }
     }
-    await axios.post(process.env.KEUrl + '/wallet', {
+    await axios.post(process.env.apiUrl + '/getwallet', {
       pin: data.pin
     }, config)
     .then(async (res)=> {
@@ -84,10 +84,11 @@ export const actions = {
         Authorization: 'Bearer ' + token
       }
     }
-    await axios.post(process.env.KEUrl + '/sendpayment', {
+    await axios.post(process.env.apiUrl + '/sendpayment', {
       pin: data.pin,
       destination: data.destination,
-      amount: data.amount
+      amount: data.amount,
+      memo: data.memo
     }, config)
     .then(async (res) => {
       if(res.data.message) {

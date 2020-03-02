@@ -6,8 +6,8 @@
           <v-col>
             <h4 class="font-weight-thin headline" style="color: #05427c">KE TOKEN</h4>
           </v-col>
-          <v-col class="balance" v-for="item in portfolio.balances" :key="item.id">
-            <h1>{{ item.balance ? item.balance/Math.pow(10, 8) : 0 }} KE</h1>
+          <v-col class="balance" v-for="item in portfolio" :key="item.id">
+            <h1>{{ item.balance ? item.balance : 0 }} KE</h1>
             <span class="font-weight-bold title" style="color: #e0e0e0">= $1341.67</span>
           </v-col>
         </v-row>
@@ -112,7 +112,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.KEUrl + "/portforlio", config)
+    return axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
         return { portfolio: res.data }
       })

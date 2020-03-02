@@ -36,7 +36,7 @@
                     <span>{{ `KPI` }}</span>
                   </td>
                   <td>
-                    <span>{{ item.amount ? (item.amount/ Math.pow(10, 8)) : null }}</span> 
+                    <span>{{ item.amount ? (item.amount) : null }}</span> 
                   </td>
                   <td>
                     Complete
@@ -78,7 +78,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.KEUrl + "/trx-history", config)
+    return axios.get(process.env.apiUrl + "/trx-history", config)
       .then((res) => {
         return { history: res.data }
       })

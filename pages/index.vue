@@ -7,17 +7,17 @@
           <v-row>
             <v-col class="d-flex justify-center">
               <v-progress-circular
-                v-for="item in portfolio.balances" :key="item.id"
+                v-for="item in portfolio" :key="item.id"
                 :rotate="360"
                 :size="150"
                 :width="18"
                 :value="100"
                 color="#79c4ff"
               >
-                $ {{ item.balance ? item.balance/Math.pow(10, 8) : 0 }}
+                $ {{ item.balance ? item.balance : 0 }}
               </v-progress-circular>
               <v-progress-circular
-                v-if="portfolio.error || portfolio.balances.length <= 0"
+                v-if="portfolio.error"
                 :rotate="360"
                 :size="150"
                 :width="18"
@@ -43,7 +43,7 @@
             hide-default-footer
             hide-default-header
           >
-            <template v-if="portfolio.balances.length > 0" v-slot:header> 
+            <template v-if="!portfolio.error" v-slot:header> 
               <thead>
                 <tr>
                   <th class="text-left" style="color: #79c4ff">Asset</th>
@@ -51,18 +51,19 @@
                 </tr>
               </thead>
             </template>
-            <template v-if="portfolio.balances.length > 0" v-slot:body>
+            <template v-if="!portfolio.error" v-slot:body>
               <tbody>
-                <tr v-for="item in portfolio.balances" :key="item.id">
+                <tr v-for="item in portfolio" :key="item.id">
                   <td class="d-flex align-center">
                     <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span v-if="item.issueTransaction.name">{{ item.issueTransaction.name }}</span>
+                    <span v-if="item.asset_code">{{ item.asset_code }}</span>
+                    <span v-else>{{ item.asset_type }}</span>
                   </td>
-                  <td>{{ item.balance ? item.balance/Math.pow(10, 8) : 0 }}</td>
+                  <td>{{ item.balance }}</td>
                 </tr>
               </tbody>
             </template>
-            <template v-if="!portfolio.balances.length <= 0" v-slot:no-data>
+            <template v-if="portfolio.error" v-slot:no-data>
               <span>No data available</span>
             </template>
           </v-data-table>
@@ -96,7 +97,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.KEUrl + "/portforlio", config)
+    return axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
         return { portfolio: res.data }
       })

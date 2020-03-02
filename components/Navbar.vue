@@ -25,12 +25,11 @@
       app
     >
       <v-list>
-        <v-list-item-group>
+        <v-list-item-group color="#79c4ff">
           <div style="padding-top: 3rem"></div>
           <v-list-item to="/">
             <v-list-item-icon>
-              <v-icon>mdi-wallet</v-icon>
-              <!-- <img src="" alt=" wallet" style="width: 25px"> -->
+              <img src="~/assets/wallet.svg" alt="wallet" style="width: 25px">
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">Wallet</v-list-item-title>
@@ -38,7 +37,7 @@
           </v-list-item>
           <v-list-item to="/transaction">
             <v-list-item-icon>
-              <!-- <img src="" alt=" wallet" style="width: 25px"> -->
+              <img src="~/assets/transaction.svg" alt="transaction" style="width: 25px">
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">Transaction</v-list-item-title>
@@ -46,7 +45,7 @@
           </v-list-item>
           <v-list-item to="/send">
             <v-list-item-icon>
-              <img src="" alt=" wallet" style="width: 25px">
+              <img src="~/assets/send.svg" alt="send" style="width: 25px">
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">Send</v-list-item-title>
@@ -54,7 +53,7 @@
           </v-list-item>
           <v-list-item to="receive">
             <v-list-item-icon>
-              <img src="" alt=" wallet" style="width: 25px">
+              <img src="~/assets/recieve.svg" alt="receive" style="width: 25px">
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">Receive</v-list-item-title>
@@ -62,7 +61,7 @@
           </v-list-item>
           <v-list-item to="setting">
             <v-list-item-icon>
-              <img src="" alt=" wallet" style="width: 25px">
+              <img src="~/assets/setting.svg" alt="setting" style="width: 25px">
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium">Setting</v-list-item-title>

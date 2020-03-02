@@ -67,7 +67,7 @@
                     <span>{{ `KPI` }}</span>
                   </td>
                   <td>
-                    <span>{{ item.amount ? (item.amount/ Math.pow(10, 8)) : null }}</span> 
+                    <span>{{ item.amount ? (item.amount) : null }}</span> 
                   </td>
                   <td>
                     Complete
@@ -110,7 +110,7 @@ export default {
       }
     };
     let user_profile = await axios.get(process.env.apiUrl + "/userprofile", config)
-    let history = await axios.get(process.env.KEUrl + "/trx-history", config)
+    let history = await axios.get(process.env.apiUrl + "/trx-history", config)
     return {
       user_profile: user_profile.data,
       history: history.data
@@ -118,7 +118,7 @@ export default {
   },
   data () {
     return {
-      // ke: require("~/assets/Logo-KE.png"),
+      ke: require("~/assets/Koompi-White.png"),
     }
   },
   methods: {
