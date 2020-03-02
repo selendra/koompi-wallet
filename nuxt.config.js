@@ -85,7 +85,7 @@ export default {
     }
   },
   icon: {
-    iconSrc: './assets/koompi_logo512.png',
+    iconSrc: './assets/koompi_icon_launcher.png',
   },
   manifest: {
     short_name: 'Koompi Wallet',
