@@ -183,33 +183,4 @@ export default {
 .v-sheet {
   background: #1a2029;
 }
-/* // RESPONSIVE */
-/* //SmartPhone */
-@media only screen and (max-width: 500px) {
-  .v-card {
-    box-shadow: 0px 0px 0px 0px;
-  }
-}
-/* //Tablet */
-@media only screen and (min-width: 501px) and (max-width: 767px) {
-  .v-card {
-    box-shadow: 0px 0px 0px 0px;
-  }
-}
-/* //Normal */
-@media only screen and (min-width: 768px) and (max-width: 1199px){
-    
-}
-/* Large monitor */
-@media only screen and (min-width: 1200px) and (max-width: 1919px) {
-       
-}
-/* //Landscape */
-@media only screen and (max-height: 500px) {
-    
-}
-/* Widescreen */
-@media only screen and (min-width: 1920px) {
-    
-}
 </style>
