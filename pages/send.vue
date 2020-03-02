@@ -4,13 +4,41 @@
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
         <v-card>
           <v-row class="ke_card">
-            <v-col cols="6">
+            <v-col>
               <h4 class="font-weight-thin headline">Koompi TOKEN</h4>
+              <v-data-table
+                hide-default-footer
+                hide-default-header
+              >
+                <template v-if="!portfolio.error" v-slot:header> 
+                  <thead>
+                    <tr>
+                      <th class="text-left" style="color: #79c4ff">Asset</th>
+                      <th class="text-left" style="color: #79c4ff">Amount</th>
+                    </tr>
+                  </thead>
+                </template>
+                <template v-if="!portfolio.error" v-slot:body>
+                  <tbody>
+                    <tr v-for="item in portfolio" :key="item.id">
+                      <td class="d-flex align-center">
+                        <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
+                        <span v-if="item.asset_code">{{ item.asset_code }}</span>
+                        <span v-else>{{ item.asset_type }}</span>
+                      </td>
+                      <td>{{ item.balance }}</td>
+                    </tr>
+                  </tbody>
+                </template>
+                <template v-if="portfolio.error" v-slot:no-data>
+                  <span>No data available</span>
+                </template>
+              </v-data-table>
             </v-col>
-            <v-col cols="6" class="balance" v-for="item in portfolio" :key="item.id">
+            <!-- <v-col class="balance" v-for="item in portfolio" :key="item.id">
               <h1>{{ item.balance ? item.balance : 0 }} KE</h1>
               <span class="font-weight-bold title" style="color: #e0e0e0">= $1341.67</span>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-card>
       </v-col>
@@ -28,7 +56,7 @@
               v-model="valid"
               lazy-validation
             >
-              <div v-show="optionSend">
+              <div v-show="optionSend" class="mobile">
                 <v-btn @click="handleScan()" outlined>Scan QR</v-btn>
                 <v-btn @click="handleType()" outlined>Type Wallet</v-btn>
               </div>
@@ -36,6 +64,13 @@
               <v-text-field
                 label="Receiver Address"
                 v-show="textfield"
+                v-model="destination"
+                :rules="destinationRule"
+                outlined
+              ></v-text-field>
+               <v-text-field
+                class="desktop"
+                label="Receiver Address"
                 v-model="destination"
                 :rules="destinationRule"
                 outlined
@@ -212,6 +247,10 @@ export default {
 </script>
 
 <style scoped>
+.ke_token {
+  width: 26px;
+  margin: 5px; 
+}
 .ke_card h4 {
   padding: 10% 0 0 5%;
 }
@@ -248,6 +287,7 @@ export default {
   .container {
     padding: 1rem;
   }
+  .desktop { display: none; }
 }
 /* //Tablet */
 @media only screen and (min-width: 501px) and (max-width: 767px) {
@@ -258,6 +298,7 @@ export default {
     width: 350px;
     height: 200px;
   }
+  .desktop { display: none; }
 }
 /* //Normal */
 @media only screen and (min-width: 768px) and (max-width: 1199px){
@@ -268,10 +309,11 @@ export default {
     width: 350px;
     height: 220px;
   }
+  .mobile { display: none; }
 }
 /* Large monitor */
 @media only screen and (min-width: 1200px) and (max-width: 1919px) {
-       
+  .mobile { display: none; } 
 }
 /* //Landscape */
 @media only screen and (max-height: 500px) {
@@ -279,6 +321,6 @@ export default {
 }
 /* Widescreen */
 @media only screen and (min-width: 1920px) {
-    
+  .mobile { display: none; }
 }
 </style>
