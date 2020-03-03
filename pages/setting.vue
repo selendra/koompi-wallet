@@ -8,7 +8,7 @@
           <br>
           <div class="d-flex flex-column">
             <v-row class="justify-center">
-              <img src="~/assets/koompi_logo.png" alt="profile" style="width: 100px">
+              <img src="~/assets/koompi_logo.png" alt="profile" style="width: 100px; height: 100px;">
             </v-row>
             <div class="pt-5"></div>
             <span style="text-align: center" class="font-weight-thin display-1" v-if="user_profile.first_name || user_profile.mid_name || user_profile.last_name">

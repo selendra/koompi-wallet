@@ -6,26 +6,11 @@
           <h2 >Koompi Wallet</h2>
           <v-row>
             <v-col class="d-flex justify-center">
-              <v-progress-circular
-                v-for="item in portfolio" :key="item.id"
-                :rotate="360"
-                :size="150"
-                :width="18"
-                :value="100"
-                color="#79c4ff"
-              >
-                $ {{ item.balance ? item.balance : 0 }}
-              </v-progress-circular>
-              <v-progress-circular
-                v-if="portfolio.error"
-                :rotate="360"
-                :size="150"
-                :width="18"
-                :value="100"
-                color="#79c4ff"
-              >
-                $ 0
-              </v-progress-circular>
+              <client-only>
+                <div class="chart">
+                <LineChart :chart-data="datacollection" :styles="chart"></LineChart>
+                </div>
+              </client-only>
             </v-col>
           </v-row>
         </v-card>
@@ -76,8 +61,42 @@
 <script>
 import axios from 'axios';
 import Cookie from 'js-cookie';
+import LineChart from '~/plugins/LineChart.js';
 export default {
   middleware: ['auth'],
+  components : {
+    LineChart
+  },
+  data() {
+    return {
+      datacollection: null,
+      width: 300
+    }
+  },
+  mounted () {
+    this.fillData()
+  },
+  computed: {
+    chart () {
+      return {
+        width: `${this.width}px`,
+        position: 'relative'
+      }
+    }
+  },
+  methods: {
+    fillData () {
+      this.datacollection = {
+        labels: ['ZTO', 'Native'],
+        datasets: [
+          {
+            backgroundColor: ['#3474eb', '#f87979'],
+            data: [this.portfolio[0].balance, this.portfolio[1].balance]
+          }
+        ]
+      }
+    },
+  },
   asyncData ({req, res, error, redirect, commit}) {
     let token;
     if (process.server) {
