@@ -91,7 +91,7 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#'+Math.floor(Math.random()*16777215).toString(16), '#'+Math.floor(Math.random()*16777215).toString(16)],
+            backgroundColor: ['#92fb85', '#'+Math.floor(Math.random()*16777215).toString(16)],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]

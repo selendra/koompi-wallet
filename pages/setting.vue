@@ -24,7 +24,7 @@
           <div class="setting_button">
             <v-row>
               <v-col class="d-flex justify-center">
-                <v-btn color="secondary" large @click="openAddAsset()">
+                <v-btn color="#2962FF" large @click="openAddAsset()">
                   <span style="color: #fafafa">Add Asset</span>
                 </v-btn>
               </v-col>
