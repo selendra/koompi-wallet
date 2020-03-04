@@ -88,7 +88,7 @@ export default {
   methods: {
     fillData () {
       this.datacollection = {
-        labels: ['ZTO', 'Native'],
+        labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
             backgroundColor: ['#'+Math.floor(Math.random()*16777215).toString(16), '#'+Math.floor(Math.random()*16777215).toString(16)],
