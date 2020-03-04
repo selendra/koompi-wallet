@@ -35,7 +35,7 @@ export default {
  plugins: [
   { src: '~/plugins/vue-qr', ssr: false },
   { src: '~/plugins/vue-qrcode-reader', ssr: false },
-  { src: '~/plugins/chart', ssr: false },
+  { src: '~/plugins/chart', },
 ],
   /*
   ** Nuxt.js dev-modules

@@ -5,11 +5,12 @@
         <v-card class="detail">
           <h2 >Koompi Wallet</h2>
           <v-row>
-            <v-col class="d-flex justify-center">
+            <v-col class="d-flex justify-center" v-if="!portfolio.error">
               <client-only>
-                <div class="chart">
-                <LineChart :chart-data="datacollection" :styles="chart"></LineChart>
-                </div>
+                <LineChart 
+                  :chart-data="datacollection"
+                  :styles="chart">
+                </LineChart>
               </client-only>
             </v-col>
           </v-row>
@@ -70,11 +71,11 @@ export default {
   data() {
     return {
       datacollection: null,
-      width: 300
+      width: 300,
     }
   },
   mounted () {
-    this.fillData()
+    if(!this.portfolio.error) this.fillData();
   },
   computed: {
     chart () {
@@ -90,8 +91,8 @@ export default {
         labels: ['ZTO', 'Native'],
         datasets: [
           {
-            backgroundColor: ['#3474eb', '#f87979'],
-            data: [this.portfolio[0].balance, this.portfolio[1].balance]
+            backgroundColor: ['#'+Math.floor(Math.random()*16777215).toString(16), '#'+Math.floor(Math.random()*16777215).toString(16)],
+            data: this.portfolio.map(asset => asset.balance)
           }
         ]
       }
@@ -118,7 +119,9 @@ export default {
     };
     return axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
-        return { portfolio: res.data }
+        return {
+          portfolio: res.data
+        }
       })
       .catch((e) => {
         redirect({

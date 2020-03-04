@@ -75,10 +75,25 @@
                 :rules="destinationRule"
                 outlined
               ></v-text-field>
+              <v-select
+                outlined
+                :items="portfolio.map(
+                  portfolio => portfolio.asset_code !== undefined ? 
+                  portfolio.asset_code : portfolio.asset_type
+                )"
+                label="Asset Type"
+                :rules="asset_codeRule"
+                v-model="asset_code"
+              ></v-select>
               <v-text-field
                 label="Amount"
                 v-model="amount"
                 :rules="amountRule"
+                outlined
+              ></v-text-field>
+              <v-text-field
+                label="Memo"
+                v-model="memo"
                 outlined
               ></v-text-field>
               <v-btn class="primary" large style="width: 100%" @click="handleNext()">Next</v-btn>
@@ -88,7 +103,7 @@
                 <div style="color: #415593" class="font-weight-light">
                   <p>PIN Code</p>
                   <client-only>
-                    <!-- <VuePin v-model="pin" :onlyNumber="true"/> -->
+                    <VuePin v-model="pin" :onlyNumber="true"/>
                   </client-only>
                   <div class="pt-10"></div>
                   <p class="error white--text">{{ this.pin_msg }}</p>
@@ -121,13 +136,13 @@
 <script>
 import axios from 'axios';
 import Cookie from 'js-cookie';
-// import VuePin from "@/components/VuePin";
+import VuePin from "@/components/VuePin";
 import {validate} from '@/plugins/Mixin/validate.js';
 import { message } from '@/plugins/Mixin/message.js';
 export default {
   middleware: ['auth'],
   components: {
-    // VuePin
+    VuePin
   },
   mixins: [validate, message],
   asyncData ({req, res, redirect}) {
@@ -173,8 +188,10 @@ export default {
       camera: "auto",
 
       pin: '',
+      asset_code: '',
       destination: '',
       amount: '',
+      memo: '',
 
       pin_msg: '',
       loading: false,
@@ -226,8 +243,10 @@ export default {
         this.loading = true;
         this.$store.dispatch('users/handleSendPayment', {
           pin: this.pin,
+          asset_code: this.asset_code ,
           destination: this.destination,
-          amount: this.amount
+          amount: this.amount,
+          memo: this.memo
         })
         .then(() => {
           if(this.type === 'success') {

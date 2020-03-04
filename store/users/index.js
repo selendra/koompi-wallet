@@ -86,6 +86,7 @@ export const actions = {
     }
     await axios.post(process.env.apiUrl + '/sendpayment', {
       pin: data.pin,
+      asset_code: data.asset_code,
       destination: data.destination,
       amount: data.amount,
       memo: data.memo
@@ -122,6 +123,22 @@ export const actions = {
         await commit('set_msg', res.data.error.message);
         await commit('set_type', 'error');
       }
+    })
+  },
+// Add Asset
+  async handleAddAsset({commit}, data) {
+    const token = Cookie.get('jwt');
+    const config = {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }
+    await axios.post(process.env.apiUrl + '/addasset', {
+      asset_code: data.asset_code,
+      asset_issuer: data.asset_issuer
+    }, config)
+    .then(async(res) => {
+      await commit('set_msg', res.data.message)
     })
   },
 // Change Password
