@@ -6,7 +6,7 @@
       app
     >
       <v-btn text @click="handleDrawer()" @click.stop="mini = !mini">
-        <v-icon>mdi-menu</v-icon>
+        <v-icon>fa fa-bars</v-icon>
       </v-btn>
       <v-toolbar-title>
         <img src="../assets/koompi_title-min.png" alt="logo_ke" style="width: 140px">
@@ -14,7 +14,7 @@
       <v-spacer></v-spacer>
       <v-btn text @click="handleSignout()">
         <span>SignOut</span>
-        <v-icon right>mdi-exit-to-app</v-icon>
+        <v-icon right>fa fa-sign-out-alt</v-icon>
       </v-btn>
     </v-app-bar>
 

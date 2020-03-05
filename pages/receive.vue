@@ -30,7 +30,7 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn absolute dark fab top left color="primary" v-on="on" @click="onCopy()">
-                  <v-icon>mdi-content-copy</v-icon>
+                  <v-icon>fa fa-copy</v-icon>
                 </v-btn>
               </template>
               <span>Click To Copy</span>
