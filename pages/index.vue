@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-        <v-card class="detail">
+        <v-card class="detail" :loading="loading">
           <h2 >Koompi Wallet</h2>
           <v-row>
             <v-col class="d-flex justify-center" v-if="!portfolio.error">
@@ -72,10 +72,12 @@ export default {
     return {
       datacollection: null,
       width: 300,
+      loading: true
     }
   },
   mounted () {
     if(!this.portfolio.error) this.fillData();
+    this.loading = false
   },
   computed: {
     chart () {
