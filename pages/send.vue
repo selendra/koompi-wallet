@@ -100,7 +100,7 @@
             </v-form>
             <div v-show="showPin">
               <v-row class="d-flex justify-center">
-                <div style="color: #415593" class="font-weight-light">
+                <div class="font-weight-light">
                   <p>PIN Code</p>
                   <client-only>
                     <VuePin v-model="pin" :onlyNumber="true"/>

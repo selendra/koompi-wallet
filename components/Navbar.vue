@@ -9,7 +9,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-toolbar-title>
-        <img src="../assets/koompi_title.png" alt="logo_ke" style="width: 140px">
+        <img src="../assets/koompi_title-min.png" alt="logo_ke" style="width: 140px">
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text @click="handleSignout()">

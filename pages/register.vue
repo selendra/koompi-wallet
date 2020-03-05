@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6" class="pa-6">
         <span class="font-weight-bold display-1">Sign Up To
-          <img src="~/assets/koompi_title.png" alt="koompi" style="width: 180px; margin: -12px 0">
+          <img src="~/assets/koompi_title-min.png" alt="koompi" style="width: 180px; margin: -12px 0">
           Wallet
         </span>
         <div style="padding: 1.6rem"></div>
