@@ -40,8 +40,7 @@
           </v-row>
         </v-form>
       </v-col>
-      <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6"></v-col>
     </v-row>
   </div>
 </template>

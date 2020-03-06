@@ -13,7 +13,6 @@
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/toast": "^3.3.0",
-    "@nuxtjs/vuetify": "^1.11.0",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "cookieparser": "^0.1.0",
@@ -27,6 +26,7 @@
     "vue-qrcode-reader": "^2.1.1"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1"
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@nuxtjs/vuetify": "^1.11.0"
   }
 }
