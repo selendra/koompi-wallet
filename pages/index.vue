@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-        <v-card class="detail" :loading="loading">
+        <v-card class="detail">
           <h2 >Koompi Wallet</h2>
           <v-row>
             <v-col class="d-flex justify-center" v-if="!portfolio.error">
@@ -72,7 +72,6 @@ export default {
     return {
       datacollection: null,
       width: 300,
-      loading: true
     }
   },
   mounted () {
@@ -93,22 +92,20 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#92fb85', '#' + Math.floor(Math.random()*16777215).toString(16)],
+            backgroundColor: ['#92fb85', '#5B9D53'],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]
       }
     },
   },
-  asyncData ({req, res, error, redirect, commit}) {
+  asyncData ({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
         .split(";")
         .find(c => c.trim().startsWith("jwt="));
-      if (!jwtCookie) {
-        return;
-      }
+      if (!jwtCookie) return;
       token = jwtCookie.split("=")[1];
     }
     if (process.client) {

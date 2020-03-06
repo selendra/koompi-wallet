@@ -11,12 +11,14 @@
             <v-row class="d-flex justify-center">
               <client-only>
               <vue-qr 
+                alt="qr-code"
                 class="qr_code desktop"
                 :logoSrc="ke" 
                 :margin="10" 
                 :text="user_profile.wallet">
               </vue-qr>
               <vue-qr 
+                alt="qr-code"
                 class="qr_code mobile"
                 :size="130"
                 :logoSrc="ke" 
@@ -98,9 +100,7 @@ export default {
       const jwtCookie = req.headers.cookie
         .split(";")
         .find(c => c.trim().startsWith("jwt="));
-      if (!jwtCookie) {
-        return;
-      }
+      if (!jwtCookie) return;
       token = jwtCookie.split("=")[1];
     }
     if (process.client) {

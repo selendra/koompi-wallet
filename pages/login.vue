@@ -48,11 +48,11 @@
 
 <script>
 import { message } from "@/plugins/Mixin/message.js";
-import { validate } from '@/plugins/Mixin/validate.js';
+import { validateAuth } from '@/plugins/Mixin/validateAuth.js';
 
 export default {
   layout: 'login_register',
-  mixins: [message, validate],
+  mixins: [message, validateAuth],
   data() {
     return {
       phone: '+855',
