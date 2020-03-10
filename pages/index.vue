@@ -92,14 +92,14 @@ export default {
         labels: this.portfolio.map(asset => asset.asset_code !== undefined ? asset.asset_code : asset.asset_type),
         datasets: [
           {
-            backgroundColor: ['#92fb85', '#5B9D53'],
+            backgroundColor: ['#92fb85', '#5B9D53', '#6D8E69'],
             data: this.portfolio.map(asset => asset.balance)
           }
         ]
       }
     },
   },
-  asyncData ({req, redirect}) {
+  asyncData({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -119,7 +119,7 @@ export default {
     return axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
         return {
-          portfolio: res.data
+          portfolio: res.data,
         }
       })
       .catch((e) => {

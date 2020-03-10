@@ -137,7 +137,7 @@ export default {
     VuePin
   },
   mixins: [validate, message],
-  asyncData ({req, res, redirect}) {
+  asyncData ({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie

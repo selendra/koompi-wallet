@@ -47,6 +47,9 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/pwa',
   ],
+  css: [
+    '~/assets/main.css'
+  ],
   toast: {
     position: 'top-center',
     theme: "bubble", 

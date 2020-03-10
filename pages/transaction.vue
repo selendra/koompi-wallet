@@ -59,7 +59,7 @@ import Cookie from 'js-cookie';
 import axios from 'axios';
 export default {
   middleware: ['auth'],
-  asyncData ({req, res, error, redirect}) {
+  asyncData ({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie

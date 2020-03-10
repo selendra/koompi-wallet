@@ -94,7 +94,7 @@ import axios from 'axios';
 import Cookie from 'js-cookie';
 export default {
   middleware: ['auth'],
-  async asyncData({req, res, error, redirect}) {
+  async asyncData({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -111,11 +111,16 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    let user_profile = await axios.get(process.env.apiUrl + "/userprofile", config)
-    let history = await axios.get(process.env.apiUrl + "/trx-history", config)
-    return {
-      user_profile: user_profile.data,
-      history: history.data
+    try {
+      let user_profile = await axios.get(process.env.apiUrl + "/userprofile", config)
+      let history = await axios.get(process.env.apiUrl + "/trx-history", config)
+      return {
+        user_profile: user_profile.data,
+        history: history.data
+      }
+    }
+    catch(e) {
+      redirect('/login')
     }
   },
   data () {

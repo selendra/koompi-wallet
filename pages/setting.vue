@@ -145,7 +145,7 @@ export default {
       asset_issuer: ''
     }
   },
-  asyncData({req, res, error, redirect}) {
+  asyncData({req, redirect}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
