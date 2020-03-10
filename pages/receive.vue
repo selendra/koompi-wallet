@@ -2,8 +2,8 @@
   <div class="container">
     <v-row>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
-        <v-card>
-        <v-row class="ke_card">
+        <v-card class="pa-4">
+        <v-row>
           <v-col cols="6">
             <h4 class="font-weight-thin headline">Koompi TOKEN</h4>
           </v-col>
@@ -68,7 +68,7 @@
                 <tr v-for="item in history" :key="item.id">
                   <td class="d-flex align-center">
                     <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span>{{ `KPI` }}</span>
+                    <span>{{ item.asset_code !== undefined ? item.asset_code : 'Native' }}</span>
                   </td>
                   <td>
                     <span>{{ item.amount ? (item.amount) : null }}</span> 

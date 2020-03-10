@@ -33,7 +33,7 @@
                 <tr v-for="item in history" :key="item.id">
                   <td class="d-flex align-center">
                     <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span>{{ `KPI` }}</span>
+                    <span>{{ item.asset_code !== undefined ? item.asset_code : 'Native' }}</span>
                   </td>
                   <td>
                     <span>{{ item.amount ? (item.amount) : null }}</span> 
