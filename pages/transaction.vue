@@ -56,10 +56,9 @@
 
 <script>
 import Cookie from 'js-cookie';
-import axios from 'axios';
 export default {
   middleware: ['auth'],
-  asyncData ({req, redirect}) {
+  asyncData ({req, redirect, $axios}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -78,7 +77,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.apiUrl + "/trx-history", config)
+    return $axios.get(process.env.apiUrl + "/trx-history", config)
       .then((res) => {
         return { history: res.data }
       })

@@ -126,18 +126,17 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Cookie from 'js-cookie';
 import VuePin from "@/components/VuePin";
-import {validate} from '@/plugins/Mixin/validate.js';
+import { validateSend } from '@/plugins/Mixin/validateSend.js';
 import { message } from '@/plugins/Mixin/message.js';
 export default {
   middleware: ['auth'],
   components: {
     VuePin
   },
-  mixins: [validate, message],
-  asyncData ({req, redirect}) {
+  mixins: [validateSend, message],
+  asyncData ({req, redirect, $axios}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -156,7 +155,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.apiUrl + "/portforlio", config)
+    return $axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
         return { portfolio: res.data }
       })
@@ -289,8 +288,8 @@ export default {
 .v-card {
   background: rgba(52, 64, 81, 0.1)!important;
 }
-/* // RESPONSIVE */
-/* //SmartPhone */
+/* RESPONSIVE */
+/* SmartPhone */
 @media only screen and (max-width: 500px) {
   .balance h1 {
     font-size: 24px!important ;

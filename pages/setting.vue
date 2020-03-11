@@ -124,13 +124,13 @@
 
 <script>
 import Cookie from 'js-cookie';
-import axios from 'axios';
 import { message } from "@/plugins/Mixin/message.js";
-import { validate } from '@/plugins/Mixin/validate.js';
+import { validateAddAsset } from '@/plugins/Mixin/validateAddAsset.js';
+import { validateChangePassword } from '@/plugins/Mixin/validateChangePassword.js';
 
 export default {
   middleware: ['auth'],
-  mixins: [message, validate],
+  mixins: [message, validateAddAsset, validateChangePassword],
   data() {
     return {
       dialogChangePassword: false,
@@ -145,7 +145,7 @@ export default {
       asset_issuer: ''
     }
   },
-  asyncData({req, redirect}) {
+  asyncData({req, redirect, $axios}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -164,7 +164,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.apiUrl + "/userprofile", config)
+    return $axios.get(process.env.apiUrl + "/userprofile", config)
       .then((res) => {
         return { user_profile: res.data }
       })

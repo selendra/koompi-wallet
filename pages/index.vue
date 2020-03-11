@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Cookie from 'js-cookie';
 import LineChart from '~/plugins/LineChart.js';
 export default {
@@ -99,7 +98,7 @@ export default {
       }
     },
   },
-  asyncData({req, redirect}) {
+  asyncData({req, redirect, $axios}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -116,7 +115,7 @@ export default {
         Authorization: "Bearer " + token
       }
     };
-    return axios.get(process.env.apiUrl + "/portforlio", config)
+    return $axios.get(process.env.apiUrl + "/portforlio", config)
       .then((res) => {
         return {
           portfolio: res.data,

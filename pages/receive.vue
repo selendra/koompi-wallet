@@ -90,11 +90,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Cookie from 'js-cookie';
 export default {
   middleware: ['auth'],
-  async asyncData({req, redirect}) {
+  async asyncData({req, redirect, $axios}) {
     let token;
     if (process.server) {
       const jwtCookie = req.headers.cookie
@@ -112,8 +111,8 @@ export default {
       }
     };
     try {
-      let user_profile = await axios.get(process.env.apiUrl + "/userprofile", config)
-      let history = await axios.get(process.env.apiUrl + "/trx-history", config)
+      let user_profile = await $axios.get(process.env.apiUrl + "/userprofile", config)
+      let history = await $axios.get(process.env.apiUrl + "/trx-history", config)
       return {
         user_profile: user_profile.data,
         history: history.data
