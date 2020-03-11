@@ -33,12 +33,13 @@
             :rules="passwordMatch"
             outlined
           ></v-text-field>
-          <v-btn class="primary" large style="width: 100%" :loading="loading" @click="handleRegister()">Sing Up</v-btn>
+          <v-btn class="primary" large style="width: 100%" :loading="loading" @click="handleRegister()">Sign Up</v-btn>
           <v-row>
             <v-col>
+              <v-btn text to="/login">Login</v-btn>
             </v-col>
             <v-col class="d-flex justify-end">
-              <v-btn text to="/login">Login</v-btn>
+              <v-btn text to="/registerwithemail">Sign Up with email</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -46,17 +47,16 @@
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
       </v-col>
     </v-row>
-    <notifications group="foo" position="top center"/>
   </div>
 </template>
 
 <script>
-import { validate } from '@/plugins/Mixin/validate.js';
+import { validateAuth } from '@/plugins/Mixin/validateAuth.js';
 import { message } from '@/plugins/Mixin/message.js';
 
 export default {
   layout: 'login_register',
-  mixins: [message, validate],
+  mixins: [message, validateAuth],
   data() {
     return {
       phone: '+855',

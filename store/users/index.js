@@ -45,10 +45,43 @@ export const actions = {
       }
     })
   },
+// Login with Email
+  async handleLoginWithEmail({commit}, data) {
+    await axios.post(process.env.apiUrl + '/loginbyemail', {
+      email: data.email,
+      password: data.password
+    })
+    .then(async(res) => {
+      if(res.data.token) {
+        const token = await res.data.token;
+        await commit('set_token', token);
+        await commit('set_msg', res.data.message);
+        await commit('set_type', 'success');
+        Cookie.set('jwt', token);
+        this.$router.push('/');
+      } else if(res.data.message) {
+        await commit('set_msg', res.data.message);
+        await commit('set_type', 'error');
+      } else {
+        await commit('set_msg', res.data.error.message);
+        await commit('set_type', 'error');
+      }
+    })
+  },
 // Register
   async handleRegister({commit}, data) {
     await axios.post(process.env.apiUrl + '/registerbyphone', {
       phone: data.phone,
+      password: data.password
+    })
+    .then(async(res) => {
+      await commit('set_msg', res.data.message);
+    })
+  },
+// Register with Email
+  async handleRegisterWithEmail({commit}, data) {
+    await axios.post(process.env.apiUrl + '/registerbyemail', {
+      email: data.email,
       password: data.password
     })
     .then(async(res) => {

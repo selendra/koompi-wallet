@@ -15,10 +15,10 @@
           lazy-validation
         >
           <v-text-field
-            label="Phone number"
-            v-model="phone"
-            type="tel"
-            :rules="phoneRule"
+            label="Email"
+            v-model="email"
+            type="email"
+            :rules="emailRule"
             outlined
             required
           ></v-text-field>
@@ -33,7 +33,7 @@
           <v-btn class="primary" large style="width: 100%" :loading="loading" @click="handleLogin()">Login</v-btn>
           <v-row>
             <v-col>
-              <v-btn text to="/loginwithemail">Login With Email</v-btn>
+              <v-btn text to="/login">Login with phone</v-btn>
             </v-col>
             <v-col class="d-flex justify-end">
               <v-btn text to="/register">Sign Up</v-btn>
@@ -48,14 +48,14 @@
 
 <script>
 import { message } from "@/plugins/Mixin/message.js";
-import { validateAuth } from '@/plugins/Mixin/validateAuth.js';
+import { validateAuthEmail } from '@/plugins/Mixin/validateAuthEmail.js';
 
 export default {
   layout: 'login_register',
-  mixins: [message, validateAuth],
+  mixins: [message, validateAuthEmail],
   data() {
     return {
-      phone: '+855',
+      email: '',
       password: '',
 
       loading: false,
@@ -65,8 +65,8 @@ export default {
     handleLogin() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        this.$store.dispatch('users/handleLogin', {
-          phone: this.phone,
+        this.$store.dispatch('users/handleLoginWithEmail', {
+          email: this.email,
           password: this.password
         })
         .then(() => {
