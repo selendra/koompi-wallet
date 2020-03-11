@@ -46,7 +46,7 @@ export default {
   modules: [
     '@nuxtjs/toast',
     '@nuxtjs/pwa',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
   css: [
     '~/assets/main.css'

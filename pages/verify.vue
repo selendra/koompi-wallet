@@ -85,3 +85,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .v-card {
+    background: rgba(52, 64, 81, 0.1)!important;
+  }
+</style>

@@ -160,9 +160,7 @@ export default {
         return { portfolio: res.data }
       })
       .catch((e) => {
-        redirect({
-          name: 'login'
-        })
+        redirect('/login');
       })
   },
   data() {

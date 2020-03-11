@@ -122,9 +122,7 @@ export default {
         }
       })
       .catch((e) => {
-        redirect({
-          name: 'login'
-        })
+        redirect('/login');
       })
   }
 }

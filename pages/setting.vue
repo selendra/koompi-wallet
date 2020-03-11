@@ -169,9 +169,7 @@ export default {
         return { user_profile: res.data }
       })
       .catch((e) => {
-        redirect({
-          name: 'login'
-        })
+        redirect('/login');
       })
   },
   methods: {

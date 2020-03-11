@@ -82,9 +82,7 @@ export default {
         return { history: res.data }
       })
       .catch((e) => {
-        redirect({
-          name: 'login'
-        })
+        redirect('/login');
       })
   },
 }

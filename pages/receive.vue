@@ -111,8 +111,8 @@ export default {
       }
     };
     try {
-      let user_profile = await $axios.get(process.env.apiUrl + "/userprofile", config)
       let history = await $axios.get(process.env.apiUrl + "/trx-history", config)
+      let user_profile = await $axios.get(process.env.apiUrl + "/userprofile", config)
       return {
         user_profile: user_profile.data,
         history: history.data
