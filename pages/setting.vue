@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie';
+import { user_profile } from '~/utils/user-profile.js';
 import { message } from "@/plugins/Mixin/message.js";
 import { validateAddAsset } from '@/plugins/Mixin/validateAddAsset.js';
 import { validateChangePassword } from '@/plugins/Mixin/validateChangePassword.js';
@@ -131,6 +131,7 @@ import { validateChangePassword } from '@/plugins/Mixin/validateChangePassword.j
 export default {
   middleware: ['auth'],
   mixins: [message, validateAddAsset, validateChangePassword],
+  asyncData: user_profile,
   data() {
     return {
       dialogChangePassword: false,
@@ -144,33 +145,6 @@ export default {
       asset_code: '',
       asset_issuer: ''
     }
-  },
-  asyncData({req, redirect, $axios}) {
-    let token;
-    if (process.server) {
-      const jwtCookie = req.headers.cookie
-        .split(";")
-        .find(c => c.trim().startsWith("jwt="));
-      if (!jwtCookie) {
-        return;
-      }
-      token = jwtCookie.split("=")[1];
-    }
-    if (process.client) {
-      token = Cookie.get("jwt");
-    }
-    const config = {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    };
-    return $axios.get(process.env.apiUrl + "/userprofile", config)
-      .then((res) => {
-        return { user_profile: res.data }
-      })
-      .catch((e) => {
-        redirect('/login');
-      })
   },
   methods: {
     openAddAsset() {

@@ -39,7 +39,7 @@ export default {
   methods: {
     redirect() {
       setTimeout(()=> {
-        this.$router.push('/');
+        this.$router.push('/login');
       }, 3000)
     }
   },

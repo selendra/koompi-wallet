@@ -9,7 +9,7 @@
         <v-icon>fa fa-bars</v-icon>
       </v-btn>
       <v-toolbar-title>
-        <img src="../assets/koompi_title-min.png" alt="logo_ke" style="width: 140px">
+        <img src="../assets/koompi_title-min.png" alt="logo_koompi" style="width: 140px">
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text @click="handleSignout()">
@@ -27,7 +27,7 @@
       <v-list>
         <v-list-item-group color="#79c4ff">
           <div style="padding-top: 3rem"></div>
-          <v-list-item to="/">
+          <v-list-item nuxt to="/">
             <v-list-item-icon>
               <v-icon>fas fa-wallet</v-icon>
             </v-list-item-icon>
@@ -35,7 +35,7 @@
               <v-list-item-title class="font-weight-medium">Wallet</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="/transaction">
+          <v-list-item nuxt to="/transaction">
             <v-list-item-icon>
               <v-icon>fas fa-list</v-icon>
             </v-list-item-icon>
@@ -43,7 +43,7 @@
               <v-list-item-title class="font-weight-medium">Transaction</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="/send">
+          <v-list-item nuxt to="/send">
             <v-list-item-icon>
               <v-icon>fas fa-arrow-up</v-icon>
             </v-list-item-icon>
@@ -51,7 +51,7 @@
               <v-list-item-title class="font-weight-medium">Send</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="receive">
+          <v-list-item nuxt to="receive">
             <v-list-item-icon>
               <v-icon>fas fa-arrow-down</v-icon>
             </v-list-item-icon>
@@ -59,7 +59,7 @@
               <v-list-item-title class="font-weight-medium">Receive</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="setting">
+          <v-list-item nuxt to="setting">
             <v-list-item-icon>
               <v-icon>fas fa-cog</v-icon>
             </v-list-item-icon>
@@ -103,21 +103,5 @@ export default {
     .Desktop {
       display: none!important;
     }
-  }
-  /* //Normal */
-  @media only screen and (min-width: 768px) and (max-width: 1199px){
-    
-  }
-  /* Large monitor */
-  @media only screen and (min-width: 1200px) and (max-width: 1919px) {
-        
-  }
-  /* //Landscape */
-  @media only screen and (max-height: 500px) {
-      
-  }
-  /* Widescreen */
-  @media only screen and (min-width: 1920px) {
-      
   }
 </style>

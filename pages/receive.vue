@@ -90,38 +90,11 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie';
+import { receive } from '~/utils/receive.js';
+
 export default {
   middleware: ['auth'],
-  async asyncData({req, redirect, $axios}) {
-    let token;
-    if (process.server) {
-      const jwtCookie = req.headers.cookie
-        .split(";")
-        .find(c => c.trim().startsWith("jwt="));
-      if (!jwtCookie) return;
-      token = jwtCookie.split("=")[1];
-    }
-    if (process.client) {
-      token = Cookie.get("jwt");
-    }
-    const config = {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    };
-    try {
-      let history = await $axios.get(process.env.apiUrl + "/trx-history", config)
-      let user_profile = await $axios.get(process.env.apiUrl + "/userprofile", config)
-      return {
-        user_profile: user_profile.data,
-        history: history.data
-      }
-    }
-    catch(e) {
-      redirect('/login')
-    }
-  },
+  asyncData: receive,
   data () {
     return {
       ke: require("~/assets/Koompi-White.png"),
@@ -144,27 +117,12 @@ export default {
 </script>
 
 <style scoped>
-.ke_card h4 {
-  padding: 10% 0 0 5%;
-}
 .wallet_key {
   color: #fafafa;
   padding-top: 6px; 
   text-align: center;
   word-wrap: break-word;
   overflow-wrap: anywhere;
-}
-.ke_card {
-  width: 100%;
-  margin: 0 2px;
-  /* background-image:  url("~assets/card.svg"); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  position: relative;
-  border-radius: 15px;
 }
 .v-card {
   background: rgba(52, 64, 81, 0.1)!important;
@@ -189,7 +147,6 @@ export default {
   outline: none;
   margin-left: -9999px;
 }
-/* // RESPONSIVE */
 /* //SmartPhone */
 @media only screen and (max-width: 500px) {
   .desktop {
@@ -202,9 +159,6 @@ export default {
     font-size: 12px!important;
     line-height: 16px;
   }
-  .ke_card {
-    height: 200px;
-  }
   .qr_code {
     padding-top: 1%;
   }
@@ -214,20 +168,11 @@ export default {
   .desktop {
     display: none!important;
   }
-  .ke_card {
-    width: 350px;
-    height: 200px;
-  }
- 
 }
 /* //Normal */
 @media only screen and (min-width: 768px) and (max-width: 1199px){
   .desktop {
     display: none!important;
-  }
-  .ke_card {
-    width: 350px;
-    height: 200px;
   }
 }
 /* Large monitor */
@@ -235,10 +180,6 @@ export default {
   .mobile {
     display: none!important;
   }
-}
-/* //Landscape */
-@media only screen and (max-height: 500px) {
-    
 }
 /* Widescreen */
 @media only screen and (min-width: 1920px) {

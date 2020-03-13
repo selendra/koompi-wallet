@@ -126,7 +126,7 @@
 </template>
 
 <script>
-import Cookie from 'js-cookie';
+import { portfolio } from '~/utils/portfolio.js';
 import VuePin from "@/components/VuePin";
 import { validateSend } from '@/plugins/Mixin/validateSend.js';
 import { message } from '@/plugins/Mixin/message.js';
@@ -136,33 +136,7 @@ export default {
     VuePin
   },
   mixins: [validateSend, message],
-  asyncData ({req, redirect, $axios}) {
-    let token;
-    if (process.server) {
-      const jwtCookie = req.headers.cookie
-        .split(";")
-        .find(c => c.trim().startsWith("jwt="));
-      if (!jwtCookie) {
-        return;
-      }
-      token = jwtCookie.split("=")[1];
-    }
-    if (process.client) {
-      token = Cookie.get("jwt");
-    }
-    const config = {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    };
-    return $axios.get(process.env.apiUrl + "/portforlio", config)
-      .then((res) => {
-        return { portfolio: res.data }
-      })
-      .catch((e) => {
-        redirect('/login');
-      })
-  },
+  asyncData: portfolio,
   data() {
     return {
       dialogScan: false,
@@ -259,9 +233,6 @@ export default {
   width: 26px;
   margin: 5px; 
 }
-.ke_card h4 {
-  padding: 10% 0 0 5%;
-}
 .wallet_key {
   color: #fafafa;
 }
@@ -270,18 +241,6 @@ export default {
 }
 .balance h1 {
   color: #fafafa;
-}
-.ke_card {
-  width: 100%;
-  /* background-image:  url("~assets/card.svg"); */
-  background-size: cover;
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  margin: 0 2px;
-  position: relative;
-  border-radius: 15px;
 }
 .v-card {
   background: rgba(52, 64, 81, 0.1)!important;
@@ -302,10 +261,6 @@ export default {
   .balance h1 {
     font-size: 28px!important ;
   }
-  .ke_card {
-    width: 350px;
-    height: 200px;
-  }
   .desktop { display: none; }
 }
 /* //Normal */
@@ -313,19 +268,11 @@ export default {
   .balance h1 {
     font-size: 28px!important ;
   }
-  .ke_card {
-    width: 350px;
-    height: 220px;
-  }
   .mobile { display: none; }
 }
 /* Large monitor */
 @media only screen and (min-width: 1200px) and (max-width: 1919px) {
   .mobile { display: none; } 
-}
-/* //Landscape */
-@media only screen and (max-height: 500px) {
-    
 }
 /* Widescreen */
 @media only screen and (min-width: 1920px) {
