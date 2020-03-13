@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import { message } from "@/plugins/Mixin/message.js";
-import { validateAuth } from '@/plugins/Mixin/validateAuth.js';
+import { message } from "@/utils/Mixin/message.js";
+import { validateAuth } from '@/utils/Mixin/validateAuth.js';
 
 export default {
   layout: 'login_register',

@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import { validateVerify } from '@/plugins/Mixin/validateVerify.js';
-import { message } from '@/plugins/Mixin/message.js';
+import { validateVerify } from '@/utils/Mixin/validateVerify.js';
+import { message } from '@/utils/Mixin/message.js';
 export default {
   middleware: ['auth'],
   mixins: [validateVerify, message],

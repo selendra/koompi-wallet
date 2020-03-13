@@ -124,9 +124,9 @@
 
 <script>
 import { user_profile } from '~/utils/user-profile.js';
-import { message } from "@/plugins/Mixin/message.js";
-import { validateAddAsset } from '@/plugins/Mixin/validateAddAsset.js';
-import { validateChangePassword } from '@/plugins/Mixin/validateChangePassword.js';
+import { message } from "@/utils/Mixin/message.js";
+import { validateAddAsset } from '@/utils/Mixin/validateAddAsset.js';
+import { validateChangePassword } from '@/utils/Mixin/validateChangePassword.js';
 
 export default {
   middleware: ['auth'],
@@ -145,6 +145,9 @@ export default {
       asset_code: '',
       asset_issuer: ''
     }
+  },
+  created() {
+    this.$store.commit('loading/set', false)
   },
   methods: {
     openAddAsset() {

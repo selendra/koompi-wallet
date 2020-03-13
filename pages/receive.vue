@@ -100,6 +100,9 @@ export default {
       ke: require("~/assets/Koompi-White.png"),
     }
   },
+  created() {
+    this.$store.commit('loading/set', false)
+  },
   methods: {
     onCopy() {
       /* Get the text field */

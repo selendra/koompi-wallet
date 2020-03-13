@@ -128,8 +128,8 @@
 <script>
 import { portfolio } from '~/utils/portfolio.js';
 import VuePin from "@/components/VuePin";
-import { validateSend } from '@/plugins/Mixin/validateSend.js';
-import { message } from '@/plugins/Mixin/message.js';
+import { validateSend } from '@/utils/Mixin/validateSend.js';
+import { message } from '@/utils/Mixin/message.js';
 export default {
   middleware: ['auth'],
   components: {
@@ -159,6 +159,9 @@ export default {
       pin_msg: '',
       loading: false,
     }
+  },
+  created() {
+    this.$store.commit('loading/set', false)
   },
   methods: {
     async handleType() {

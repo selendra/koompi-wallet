@@ -67,6 +67,9 @@ export default {
   components : {
     LineChart
   },
+  created() {
+    this.$store.commit('loading/set', false)
+  },
   asyncData: portfolio,
   data() {
     return {
@@ -74,7 +77,7 @@ export default {
       width: 300,
     }
   },
-  mounted () {
+  mounted() {
     if(!this.portfolio.error) this.fillData();
   },
   computed: {
@@ -97,6 +100,9 @@ export default {
         ]
       }
     },
+    handleLoading() {
+      this.$store.commit('loading/set', false)
+    }
   },
 }
 </script>

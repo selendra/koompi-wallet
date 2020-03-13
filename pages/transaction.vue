@@ -59,7 +59,10 @@ import { history } from '~/utils/trx-history';
 
 export default {
   middleware: ['auth'],
-  asyncData: history
+  asyncData: history,
+  created() {
+    this.$store.commit('loading/set', false)
+  },
 }
 </script>
 

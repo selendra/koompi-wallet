@@ -1,4 +1,5 @@
 import Cookie from 'js-cookie';
+import getToken  from '~/utils/axios/getToken.js';
 
 export const portfolio = function asyncData({req, redirect, $axios}) {
   let token;
