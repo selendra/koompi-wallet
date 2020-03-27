@@ -8,25 +8,16 @@
     </v-content>
     <div style="margin-top: 3rem"></div>
     <Footer/>
-    <v-overlay :value="overlay">
-      <v-progress-circular indeterminate size="50"></v-progress-circular>
-    </v-overlay>
   </v-app>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import Navbar from '~/components/Navbar';
 import Footer from '~/components/Footer';
 export default {
   components: {
     Navbar,
     Footer
-  },
-  computed: {
-    ...mapState({
-      overlay: state => state.loading.overlay
-    })
   },
 }
 </script>

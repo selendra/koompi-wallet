@@ -44,45 +44,7 @@
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
         <v-card class="pa-2">
           <h2>Receive Token</h2>
-          <div v-if="history.error">
-            <h4 style="color: red" class="pt-6">{{ history.error.message }}</h4>
-            <br>
-            <v-btn rounded color="pink darken-3 white--text" to="/getwallet">Get Wallet</v-btn>
-          </div>
-          <v-data-table
-            v-if="!history.error"
-            hide-default-footer
-            hide-default-header
-          >
-            <template v-if="!history.error && history.length > 0" v-slot:header> 
-              <thead>
-                <tr>
-                  <th class="text-left" style="color: #79c4ff">Asset</th>
-                  <th class="text-left" style="color: #79c4ff">Amount</th>
-                  <th class="text-left" style="color: #79c4ff">Status</th>
-                </tr>
-              </thead>
-            </template>
-            <template v-if="!history.error && history.length > 0" v-slot:body>
-              <tbody>
-                <tr v-for="item in history" :key="item.id">
-                  <td class="d-flex align-center">
-                    <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span>{{ item.asset_code !== undefined ? item.asset_code : 'Native' }}</span>
-                  </td>
-                  <td>
-                    <span>{{ item.amount ? (item.amount) : null }}</span> 
-                  </td>
-                  <td>
-                    Complete
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-            <template v-if="history.length <= 0" v-slot:no-data>
-              <span>No data available</span>
-            </template>
-          </v-data-table>
+          <History :history="history" />
         </v-card>
       </v-col>
     </v-row>
@@ -91,17 +53,19 @@
 
 <script>
 import { receive } from '~/utils/receive.js';
+// import History from '~/components/Table/History.vue';
+const History = () => import("~/components/Table/History");
 
 export default {
   middleware: ['auth'],
+  components: {
+    History
+  },
   asyncData: receive,
   data () {
     return {
       ke: require("~/assets/Koompi-White.png"),
     }
-  },
-  created() {
-    this.$store.commit('loading/set', false)
   },
   methods: {
     onCopy() {

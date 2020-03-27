@@ -20,7 +20,10 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { 
+    color: '#fff',
+    height: '4px'
+  },
   /*
   ** Global CSS
   */
@@ -47,7 +50,11 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
+    'nuxt-purgecss'
   ],
+  purgeCSS: {
+    // your settings here
+  },
   css: [
     '~/assets/main.css'
   ],
@@ -55,7 +62,7 @@ export default {
     position: 'top-center',
     theme: "bubble", 
     duration: '3000',
-    register: [ // Register custom toasts
+    register: [ 
       {
         name: 'my-error',
         message: 'Oops...Something went wrong',
@@ -71,7 +78,9 @@ export default {
   */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    defaultAssets: {icons: 'fa'},
+    defaultAssets: {
+      icons: 'fa'
+    },
     theme: {
       dark: true,
     }
@@ -93,6 +102,7 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      
     }
   }
 }

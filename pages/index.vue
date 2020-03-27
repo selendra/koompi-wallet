@@ -24,35 +24,10 @@
             <br>
             <v-btn rounded color="pink darken-3 white--text" to="/getwallet">Get Wallet</v-btn>
           </div>
-          <v-data-table
+          <Portfolio 
             v-else
-            hide-default-footer
-            hide-default-header
-          >
-            <template v-if="!portfolio.error" v-slot:header> 
-              <thead>
-                <tr>
-                  <th class="text-left" style="color: #79c4ff">Asset</th>
-                  <th class="text-left" style="color: #79c4ff">Amount</th>
-                </tr>
-              </thead>
-            </template>
-            <template v-if="!portfolio.error" v-slot:body>
-              <tbody>
-                <tr v-for="item in portfolio" :key="item.id">
-                  <td class="d-flex align-center">
-                    <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span v-if="item.asset_code">{{ item.asset_code }}</span>
-                    <span v-else>{{ item.asset_type }}</span>
-                  </td>
-                  <td>{{ item.balance }}</td>
-                </tr>
-              </tbody>
-            </template>
-            <template v-if="portfolio.error" v-slot:no-data>
-              <span>No data available</span>
-            </template>
-          </v-data-table>
+            :portfolio="portfolio"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -61,14 +36,15 @@
 
 <script>
 import LineChart from '~/plugins/LineChart.js';
-import { portfolio } from '~/utils/portfolio.js'
+import { portfolio } from '~/utils/portfolio.js';
+// const portfolio () => import("~/utils/portfolio.js");
+import Portfolio from '~/components/Table/Portfolio.vue';
+
 export default {
   middleware: ['auth'],
   components : {
-    LineChart
-  },
-  created() {
-    this.$store.commit('loading/set', false)
+    LineChart,
+    Portfolio,
   },
   asyncData: portfolio,
   data() {

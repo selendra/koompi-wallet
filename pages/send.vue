@@ -4,34 +4,9 @@
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
         <v-card class="pa-4">
           <h4 class="font-weight-thin headline">Koompi TOKEN</h4>
-          <v-data-table
-            hide-default-footer
-            hide-default-header
-          >
-            <template v-if="!portfolio.error" v-slot:header> 
-              <thead>
-                <tr>
-                  <th class="text-left" style="color: #79c4ff">Asset</th>
-                  <th class="text-left" style="color: #79c4ff">Amount</th>
-                </tr>
-              </thead>
-            </template>
-            <template v-if="!portfolio.error" v-slot:body>
-              <tbody>
-                <tr v-for="item in portfolio" :key="item.id">
-                  <td class="d-flex align-center">
-                    <img src="~/assets/koompi_logo.png" alt="ke_token" class="ke_token">
-                    <span v-if="item.asset_code">{{ item.asset_code }}</span>
-                    <span v-else>{{ item.asset_type }}</span>
-                  </td>
-                  <td>{{ item.balance }}</td>
-                </tr>
-              </tbody>
-            </template>
-            <template v-if="portfolio.error" v-slot:no-data>
-              <span>No data available</span>
-            </template>
-          </v-data-table>
+          <Portfolio 
+            :portfolio="portfolio"
+          />
         </v-card>
       </v-col>
       <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
@@ -127,13 +102,16 @@
 
 <script>
 import { portfolio } from '~/utils/portfolio.js';
-import VuePin from "@/components/VuePin";
 import { validateSend } from '@/utils/Mixin/validateSend.js';
 import { message } from '@/utils/Mixin/message.js';
+import VuePin from '~/components/VuePin';
+import Portfolio from '~/components/Table/Portfolio.vue';
+
 export default {
   middleware: ['auth'],
   components: {
-    VuePin
+    VuePin,
+    Portfolio
   },
   mixins: [validateSend, message],
   asyncData: portfolio,
@@ -159,9 +137,6 @@ export default {
       pin_msg: '',
       loading: false,
     }
-  },
-  created() {
-    this.$store.commit('loading/set', false)
   },
   methods: {
     async handleType() {

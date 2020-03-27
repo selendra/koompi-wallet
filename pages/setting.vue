@@ -53,8 +53,7 @@
           <span class="font-weight-medium headline">Change Password</span>
           <div style="padding: 3% 0"></div>
           <v-form
-            ref="form"
-            v-model="valid"
+            
             lazy-validation
           >
             <v-text-field
@@ -145,9 +144,6 @@ export default {
       asset_code: '',
       asset_issuer: ''
     }
-  },
-  created() {
-    this.$store.commit('loading/set', false)
   },
   methods: {
     openAddAsset() {
