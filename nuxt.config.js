@@ -25,15 +25,16 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
- plugins: [
-  { src: '~/plugins/vue-qr', ssr: false },
-  { src: '~/plugins/vue-qrcode-reader', ssr: false },
-  { src: '~/plugins/chart'},
-],
+  plugins: [
+    { src: '~/plugins/vue-qr', ssr: false },
+    { src: '~/plugins/vue-qrcode-reader', ssr: false },
+    { src: '~/plugins/chart'},
+  ],
   /*
   ** Nuxt.js dev-modules
   */
@@ -47,14 +48,11 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    'nuxt-purgecss'
+    'nuxt-purgecss',
   ],
   purgeCSS: {
     // your settings here
   },
-  css: [
-    '~/assets/main.css'
-  ],
   toast: {
     position: 'top-center',
     theme: "bubble", 

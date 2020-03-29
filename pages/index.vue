@@ -37,7 +37,6 @@
 <script>
 import LineChart from '~/plugins/LineChart.js';
 import { portfolio } from '~/utils/portfolio.js';
-// const portfolio () => import("~/utils/portfolio.js");
 import Portfolio from '~/components/Table/Portfolio.vue';
 
 export default {
@@ -75,19 +74,12 @@ export default {
           }
         ]
       }
-    },
-    handleLoading() {
-      this.$store.commit('loading/set', false)
     }
   },
 }
 </script>
 
 <style scoped>
-.ke_token {
-  width: 26px;
-  margin: 5px; 
-}
 .v-card {
   background: rgba(52, 64, 81, 0.1)!important;
 }

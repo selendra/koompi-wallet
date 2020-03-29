@@ -39,7 +39,7 @@
               <v-btn text to="/login">Login</v-btn>
             </v-col>
             <v-col class="d-flex justify-end">
-              <v-btn text to="/registerwithemail">Sign Up with email</v-btn>
+              <v-btn text to="/register/registerwithemail">Sign Up with email</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import { validateAuth } from '@/utils/Mixin/validateAuth.js';
-import { message } from '@/utils/Mixin/message.js';
+import { validateAuth } from '~/utils/Mixin/validateAuth.js';
+import { message } from '~/utils/Mixin/message.js';
 
 export default {
   layout: 'login_register',

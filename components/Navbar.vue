@@ -24,51 +24,17 @@
       permanent
       app
     >
-      <v-list>
-        <v-list-item-group color="#79c4ff">
-          <div style="padding-top: 3rem"></div>
-          <v-list-item v-model="active" nuxt to="/">
-            <v-list-item-icon>
-              <v-icon>fas fa-wallet</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium">Wallet</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item nuxt to="/transaction">
-            <v-list-item-icon>
-              <v-icon>fas fa-list</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium">Transaction</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item nuxt to="/send">
-            <v-list-item-icon>
-              <v-icon>fas fa-arrow-up</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium">Send</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item nuxt to="receive">
-            <v-list-item-icon>
-              <v-icon>fas fa-arrow-down</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium">Receive</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item nuxt to="setting">
-            <v-list-item-icon>
-              <v-icon>fas fa-cog</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium">Setting</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
+      <v-list-item-group color="#79c4ff">
+        <div style="padding-top: 3rem"></div>
+        <v-list-item v-for="(item, index) in navItems" :key="index" :to="item.path">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-medium">{{ item.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
     </v-navigation-drawer>
   </nav>
 </template>
@@ -79,7 +45,14 @@ export default {
     return {
       drawer: true,
       mini: true,
-      active: false
+      active: false,
+      navItems: [
+        { path: '/' , text: 'Wallet', icon: 'fas fa-wallet' },
+        { path: '/transaction' , text: 'Transaction', icon: 'fas fa-list' },
+        { path: '/send' , text: 'Send', icon: 'fas fa-arrow-up' },
+        { path: '/receive' , text: 'Receive', icon: 'fas fa-arrow-down' },
+        { path: '/setting' , text: 'Setting', icon: 'fas fa-cog' },
+      ]
     }
   },
   methods: {
@@ -99,7 +72,7 @@ export default {
       display: none!important;
     }
   }
-  /* //Tablet */
+  /* Tablet */
   @media only screen and (min-width: 501px) and (max-width: 767px) {
     .Desktop {
       display: none!important;
